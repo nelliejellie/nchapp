@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/markethub.css' %}">
+    <link rel="stylesheet" href="{% static 'css/zerogrid.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+	<link rel="stylesheet" href="{% static 'css/responsiveslides.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="{% static 'js/jquery183.min.js' %}"></script>
+    <script src="{% static 'js/responsiveslides.min.js' %}"></script>
+    <script>
+		// You can also use "$(window).load(function() {"
+		$(function () {
+		  // Slideshow 
+		  $("#slider").responsiveSlides({
+			auto: true,
+			pager: false,
+			nav: true,
+			speed: 500,
+			namespace: "callbacks",
+			before: function () {
+			  $('.events').append("<li>before event fired.</li>");
+			},
+			after: function () {
+			  $('.events').append("<li>after event fired.</li>");
+			}
+		  });
+		});
+	</script>
+    <title>Market Hub</title>
+</head>
+<body>
+    <div>
+    <nav id="menu-wrap"><div id="menu-trigger">Menu</div>    
+        <ul id="menu" style="display: none;">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li>
+                <a href="#">Categories</a>
+                <ul>
+                    <li>
+                        <a href="{% url 'markethub' %}">Market Hub</a>
+                    </li>
+                    <li>
+                        <a href="#">Skill Hub</a>
+                    </li>
+                    <!-- <li>
+                        <a href="#">Item 03</a>
+                        <ul>
+                            <li><a href="#">Item 31</a></li>
+                            <li><a href="#">Item 32</a></li>
+                        </ul>				
+                    </li>
+                    <li>
+                        <a href="#">Item 04</a>				
+                        <ul>
+                            <li><a href="#">Item 41</a></li>
+                            <li><a href="#">Item 42</a></li>
+                            <li><a href="#">Item 43</a></li>
+                            <li><a href="#">Item 44</a></li>
+                        </ul>	
+                    </li> -->
+                </ul>
+            </li>
+            <li><a href="single.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="{% url 'product_form' %}">Upload Product</a></li>
+        </ul>
+    </nav>
+    </div>
+    <!-- search and filter button -->
+    <div class="form_container">
+        <div class="form">
+            <form action="">
+                <select name="" id="" class="select_input">
+                    <option value="">lagos</option>
+                    <option value="">oyo</option>
+                </select>
+            </form>
+        </div>
+        <div class="form">
+            <form class="example" action="" >
+                <input type="text" placeholder="Search.." name="search" class="text_input">
+                <button type="submit" style="background-color: #0B7DDA;"><i class="fa fa-search"></i></button>
+              </form>
+        </div>
+    </div>
+
+    <!-- the market hub -->
+    <div class="product_container">
+        {% if products %}
+            {% for product in products %}
+                <div class="product" >
+                    <figure>
+                        <img src="{{product.image.url}}" alt="">
+                        <figcaption> <a href="{% url 'detail' product.id  %}"> {{product.name}}</a></figcaption>
+                    </figure>
+                </div>
+            {% empty %}
+                <h3>There are no uploads yet</h3>
+            {% endfor %}
+        {% endif %}
+    </div>
+    
+</body>
+<script type="text/javascript">
+    $(function() {
+		if ($.browser.msie && $.browser.version.substr(0,1)<7)
+		{
+		$('li').has('ul').mouseover(function(){
+			$(this).children('ul').css('visibility','visible');
+			}).mouseout(function(){
+			$(this).children('ul').css('visibility','hidden');
+			})
+		}
+
+		/* Mobile */
+		$("#menu-trigger").on("click", function(){
+			$("#menu").slideToggle();
+		});
+
+		// iPad
+		var isiPad = navigator.userAgent.match(/iPad/i) != null;
+		if (isiPad) $('#menu ul').addClass('no-transition');      
+    });          
+</script>
+</html>

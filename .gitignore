@@ -1,0 +1,10 @@
+*.log
+*.pot
+*.pyc
+nch_env
+/media
+db.sqlite3
+__pycache__/
+local_settings.py
+.vscode
+.env
