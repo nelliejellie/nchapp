@@ -1,0 +1,29 @@
+.blog_container{
+    margin: 60px;
+}
+.blog_title{
+    text-align: center;
+}
+.blog_image{
+    margin: 15px;
+    height: 200px;
+    width: 200px;
+}
+.blog_body{
+    margin-top: 15px;
+}
+
+.textarea{
+    border: 1px solid black;
+    padding: 6px;
+}
+
+.submit_comment{
+    background-color: chocolate;
+    padding: 10px;
+    box-shadow: 5px 5px 5px grey;
+}
+
+.author{
+    color: darkorange;
+}

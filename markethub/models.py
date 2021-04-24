@@ -32,4 +32,8 @@ class Product(models.Model):
 @receiver(pre_delete, sender=Product)
 def product_delete(sender, instance, **kwargs):
     cloudinary.uploader.destroy(instance.image.public_id)
+    if image_two:
+        cloudinary.uploader.destroy(instance.image_two.public_id)
+    if image_three:
+        cloudinary.uploader.destroy(instance.image_three.public_id)
 
