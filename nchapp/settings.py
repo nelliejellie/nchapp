@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'markethub',
+    'skillhub',
     'pages',
     'cloudinary'
 ]
@@ -158,3 +159,7 @@ CELERY_TASK_SERIALIZER = 'json'
 REDIS_HOST = 'localhost'
 REDIS_PORT = '6379'
 REDIS_DB = 1
+
+
+#email backend
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

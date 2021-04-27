@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('pages.urls')),
     path('',include('markethub.urls')),
+    path('',include('skillhub.urls')),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

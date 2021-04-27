@@ -80,25 +80,21 @@
     </header>
     <div class="detail_div">
         <div class="image_detail">
-            <img src="{{details.image.url}}" alt="" class="main_image">
+            <img src="{{artisan.image.url}}" alt="" class="main_image">
             <div class="other_image_detail">
-                {% if details.image_two %}
-                    <div><img src="{{details.image_two.url}}" alt=""  class="other_image"></div>
+                {% if artisan.image_two %}
+                    <div><img src="{{artisan.image_two.url}}" alt=""  class="other_image"></div>
                 {% endif %}
-                {% if details.image_three %}
-                    <div><img src="{{details.image_three.url}}" alt=""  class="other_image"></div>
+                {% if artisan.image_three %}
+                    <div><img src="{{artisan.image_three.url}}" alt=""  class="other_image"></div>
                 {% endif %}
             </div>
         </div>
         <div class="other_detail">
-            <div class="detail pname">{{details.name}}</div><br>
-            <div class="detail pprice"> {{details.price}}</div><br>
-            <div class="detail pdesc">{{details.descriptions}}</div><br>
-            <div class="detail pcontact"><button class="button">contact seller</button></div>
-            <div class="detail pinfo">
-                <p>08143291888</p>
-                <p>emekaewelike@gmail.com</p>
-            </div>
+            <div class="detail pname">{{artisan.user.username}}</div><br>
+            <div class="detail pprice"> {{artisan.contact_number}}</div><br>
+            <div class="detail pdesc">{{artisan.categories}}</div><br>
+            <div class="detail pcontact">{{artisan.descriptions}}</div>
         </div>
     </div>
 </body>

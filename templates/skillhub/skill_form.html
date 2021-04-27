@@ -1,0 +1,64 @@
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Form</title>
+    <link rel="stylesheet" href="{% static 'css/market_form.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+  <form action="" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <h1>Register Skill</h1>
+    
+    <fieldset>
+      
+      <label for="price">Contact Number:</label>
+      <input type="number" id="mail" name="contact">
+      
+    </fieldset>
+    
+    <fieldset>
+      <label for="bio">Description:</label>
+      <textarea id="bio" name="description"></textarea>
+    </fieldset>
+    <fieldset>
+    <select id="job" name="category">
+      <optgroup label="Skill Category">
+        <option value="select">Select</option>
+        <option value="Electrician">Electrician</option>
+        <option value="Carpenter">Carpenter</option>
+        <option value="Baker">Baker</option>
+        <option value="Painter">Painter</option>
+        <option value="Photographer">Photographer</option>
+        <option value="Fashion-designer">Fashion-designer</option>
+        <option value="Barber">Barber</option>
+        <option value="Hair_dresser">Hair_dresser</option>
+        <option value="Software-Developer">Software-Developer</option>
+        <option value="beautician">beautician</option>
+        <option value="Realtor">Realtor</option>
+        <option value="Personal-Shopper">Personal-Shopper</option>
+        <option value="Other stuffs">Other stuffs</option>
+      </optgroup>
+    </select>
+    
+      <label>Images:</label>
+      <p>
+        <input type="file" name="image" size="40">
+      </p>
+      <p>
+        <input type="file" name="image_two" size="40"><br>
+        optional
+      </p>
+      <p>
+        <input type="file" name="image_three" size="40"><br>
+        optional
+      </p>
+    
+    </fieldset>
+    <button type="submit">Upload</button>
+  </form>
+  
+</body>
+</html>

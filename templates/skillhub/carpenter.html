@@ -47,8 +47,7 @@
                     </li>
                     <li>
                         <a href="{% url 'skillhub' %}">Skill Hub</a>
-                    </li>	
-                    </li> -->
+                    </li>
                 </ul>
             </li>
             <li><a href="single.html">About</a></li>
@@ -77,16 +76,16 @@
 
     <!-- the market hub -->
     <div class="product_container">
-        {% if products %}
-            {% for product in products %}
+        {% if artisan %}
+            {% for people in artisan %}
                 <div class="product" >
                     <figure>
-                        <img src="{{product.image.url}}" alt="" style="height: 400px;">
-                        <figcaption> <a href="{% url 'detail' product.id  %}"> {{product.name}}</a></figcaption>
+                        <img src="{{people.image.url}}" alt="" style="height: 400px;">
+                        <figcaption> <a href="{{ people.get_absolute_url }}"> {{people.user.username}}</a></figcaption>
                     </figure>
                 </div>
             {% empty %}
-                <h3>There are no uploads yet</h3>
+                <h3>There are no {{people.categories}}s yet</h3>
             {% endfor %}
         {% endif %}
     </div>
