@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import cloudinary
 import environ
+from django.conf import settings
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -34,6 +35,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,7 +45,7 @@ INSTALLED_APPS = [
     'markethub',
     'skillhub',
     'pages',
-    'cloudinary'
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +58,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'nchapp.urls'
+ROOT_URLCONF = 'corpershub.urls'
 
 TEMPLATES = [
     {
@@ -74,7 +76,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'nchapp.wsgi.application'
+WSGI_APPLICATION = 'corpershub.wsgi.application'
 
 
 # Database
@@ -82,14 +84,12 @@ WSGI_APPLICATION = 'nchapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'NCH',
-        'USER':'postgres',
-        'PASSWORD':'Chidubem1992',
-        'HOST':'localhost'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
+AUTH_USER_MODEL = 'accounts.MyUser'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -163,3 +163,5 @@ REDIS_DB = 1
 
 #email backend
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# updating the auth user property

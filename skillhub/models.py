@@ -6,6 +6,7 @@ import cloudinary
 from django.dispatch import receiver
 from django.contrib.auth.models import User
 from django.urls import reverse
+from accounts.models import MyUser
 
 # Create your models here.
 
@@ -26,7 +27,7 @@ class Artisan(models.Model):
        ('Baker','Baker'),
 
    )
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     categories = models.CharField(max_length=30, choices=status_choices,default='not selected')
     descriptions = models.TextField(max_length=200, blank=False)
     contact_number = models.CharField(max_length=13, blank=False)

@@ -5,6 +5,7 @@ from django.db.models.signals import pre_delete
 import cloudinary
 from django.dispatch import receiver
 from django.contrib.auth.models import User
+from accounts.models import MyUser
 
 
 # Create your models here.
@@ -16,7 +17,7 @@ class Product(models.Model):
        ('Apartment','Apartment'),
        ('Other stuffs','Other stuffs'),
    )
-    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    user = models.ForeignKey(MyUser, on_delete=models.CASCADE, blank=True)
     name = models.CharField(max_length=20)
     categories = models.CharField(max_length=30, choices=status_choices,default='not selected')
     sold = models.BooleanField(default=False, blank=True)

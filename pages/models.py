@@ -6,6 +6,7 @@ from cloudinary.models import CloudinaryField
 from django.db.models.signals import pre_delete
 import cloudinary
 from django.dispatch import receiver
+from accounts.models import MyUser
 
 
 # Create your models here.
@@ -16,7 +17,7 @@ class Corper_blog(models.Model):
     )
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=100)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     body = models.TextField()
     publish = models.DateTimeField(default=datetime.now, blank=False)
     created = models.DateTimeField(auto_now_add=True)
@@ -43,7 +44,7 @@ def product_delete(sender, instance, **kwargs):
 class Comment(models.Model):
     post = models.ForeignKey(Corper_blog, on_delete=models.CASCADE, related_name='comments')
     body = models.TextField()
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)

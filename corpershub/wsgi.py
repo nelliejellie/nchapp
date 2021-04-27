@@ -1,5 +1,5 @@
 """
-WSGI config for nchapp project.
+WSGI config for corpershub project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'nchapp.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'corpershub.settings')
 
 application = get_wsgi_application()
