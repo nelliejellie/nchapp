@@ -73,7 +73,7 @@ def artisan_form(request):
         image_three = request.FILES.get('image_three')
 
         artisan = Artisan(descriptions=descriptions,categories=categories,contact_number=contact_number, image=image, image_two=image_two, image_three=image_three)
-
+        artisan.user = request.user
         artisan.save()
         return redirect('skillhub')
     return render(request, 'skillhub/skill_form.html')

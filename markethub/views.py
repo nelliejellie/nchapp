@@ -1,10 +1,15 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from django.http import HttpResponse
 from markethub.models import *
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib import messages
 
 
 def markethub(request):
-    products = Product.objects.order_by('-date')
+    products = Product.objects.filter(user__state__contains=request.user.state)
+    if len(products) < 1:
+        messages.success(request, 'no products uploaded in your state yet')
     context = {
         'products':products,
     }
@@ -19,10 +24,16 @@ def product_form(request):
         image = request.FILES.get('image')
         image_two =  request.FILES.get('image_two')
         image_three = request.FILES.get('image_three')
+        number = request.POST['number']
 
-        product = Product(name=name, descriptions=descriptions, price=price, categories=categories, image=image, image_two=image_two, image_three=image_three)
-
+        product = Product(name=name, descriptions=descriptions, price=price, categories=categories, image=image, image_two=image_two, image_three=image_three, contact_number=number)
+        product.user = request.user
         product.save()
+        subject = 'product uploaded to naijacorphub'
+        message = f'Hi {product.user.username} thanks for registering with us. your product has been uploaded'
+        from_email = settings.EMAIL_HOST_USER
+        recipient_list = [product.user.email,]
+        send_mail(subject, message, from_email, recipient_list)
         return redirect('markethub')
     return render(request, 'markethub/market_form.html')
 

@@ -75,6 +75,11 @@
         </div>
     </div>
 
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color: green;text-align: center;">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
     <!-- the market hub -->
     <div class="product_container">
         {% if products %}

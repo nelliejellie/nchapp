@@ -1,17 +1,15 @@
 {% load static %}
-{% load blog_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ post_details.title }}</title>
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
     <link rel="stylesheet" href="{% static 'css/zerogrid.css' %}">
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 	<link rel="stylesheet" href="{% static 'css/menu.css' %}">
 	<link rel="stylesheet" href="{% static 'css/responsiveslides.css' %}">
-    <link rel="stylesheet" href="{% static 'css/postdetail.css' %}">
     <script src="{% static 'js/jquery183.min.js' %}"></script>
     <script src="{% static 'js/responsiveslides.min.js' %}"></script>
     <script>
@@ -33,6 +31,7 @@
 		  });
 		});
 	</script>
+    <title>Register</title>
 </head>
 <body>
     <header>
@@ -73,28 +72,30 @@
                 </ul>
             </nav>
     </header>
-    <div class="blog_container">
-        <div class="blog_title"><h1>{{ post_details.title }}</h1></div>
-        {% if post_details.image %}
-        <div class="blog_image"><img src="{{ post_details.image.url }}" alt="" id="img-detail"></div>
-        {% endif %}
-        <div class="blog_body">{{ post_details.body | markdown }}</div>
-        <div class="comments">
-            <h3 style="text-align: left;">Comments</h3>
-            {% for com in comments %}
-                <span class="author">{{com.author}}</span>: <span>{{com.body}}</span><br>
-            {% empty %}
-                <h4>no comments on this post yet</h4>
-            {% endfor %}
-        </div>
-        <br><br><br>
-        <div>
-            <form method="post">
-                <textarea name="comment" id="" cols="30" rows="5" class="textarea" required maxlength="3"></textarea>
-                {% csrf_token %}
-                <p><input type="submit" value="Add comments" class="submit_comment"></p>
-            </form>
-        </div>
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color: red;text-align: center;">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    <div class="container">
+        <div class="signupdiv"><h1>Signup</h1></div>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="form_div">
+                <div class="form_child">
+                    <div><input type="text" name="first_name" id="" class="first_name" placeholder=" First Name"></div>
+                    <div><input type="text" name="last_name" id="" class="last_name" placeholder="Last Name"></div>
+                </div>
+                <div class="form_child"><input type="text" name="username" id="" class="other_input" placeholder="Username"></div>
+                <div class="form_child"><input type="text" name="email" id="" class="other_input" placeholder="Email"></div>
+                <div class="form_child"><input type="password" name="password" id="" class="other_input" placeholder="Password"></div>
+                <div class="form_child"><input type="password" name="password2" id="" class="other_input" placeholder="Repeat Password"></div>
+                <div class="form_child"><input type="text" name="reg_no" id="" class="other_input" placeholder="Reg No"></div>
+                <div class="form_child"><input type="text" name="state" id="" class="other_input" placeholder="state of deployment"></div>
+                <div class="form_child"><input type="text" name="local_govt" id="" class="other_input" placeholder="local_govt"></div>
+                <div class="form_child"><input type="submit" value="Get Started" class="other_input submitter" style="background-color: #1AB188;"></div>
+            </div>
+        </form>
     </div>
 </body>
 </html>

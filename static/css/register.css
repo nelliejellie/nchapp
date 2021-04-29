@@ -1,0 +1,67 @@
+.container{
+    background-color: #24333C;
+    display: flex;
+    flex-direction: column;
+    justify-self: auto;
+    height: 750px;
+    width: 80%;
+    margin: auto;
+}
+h1{
+    color: white;
+    text-align: center;
+    text-transform: capitalize;
+}
+.signupdiv{
+    width: 100%;
+}
+
+.form_child{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 15px;
+}
+
+.first_name,.last_name{
+    height: 35px;
+    width: 250px;
+    font-size: 20px;
+    padding: 12px 20px;
+    border-radius: 10px;
+}
+
+.other_input{
+    height: 35px;
+    width: 500px;
+    font-size: 20px;
+    padding: 12px 20px;
+    border-radius: 10px;
+}
+.submitter{
+    background-color: #1AB188;
+    height: 40px;
+}
+
+@media (min-width: 300px) and (max-width: 800px){
+    .container{
+        margin: 0%;
+        width: 100%;
+    }
+    .form_child{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        margin: 15px;
+    }
+    .first_name,.last_name, .other_input{
+        height: 35px;
+        width: 250px;
+        font-size: 20px;
+        padding: 12px 20px;
+        border-radius: 10px;
+    }
+    .last_name{
+        margin-top: 15px;
+    }
+}
