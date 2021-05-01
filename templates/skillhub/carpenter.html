@@ -53,6 +53,15 @@
             <li><a href="single.html">About</a></li>
             <li><a href="contact.html">Contact</a></li>
             <li><a href="{% url 'product_form' %}">Upload Product</a></li>
+            {% if user.is_authenticated %}
+                <a href="javascript:{$('#logout').submit()}">logout</a>
+                <form id="logout" method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <input type="hidden">
+                </form>
+            {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
         </ul>
     </nav>
     </div>

@@ -17,4 +17,5 @@ urlpatterns = [
     path('skillhub/soft_dev/',views.soft_dev, name='soft_dev'),
     path('skillhub/<int:skill_id>/',views.skill_detail, name='skill_detail'),
     path('skillhub/skill_form/',views.artisan_form, name='skill_form'),
+    path('skillhub/search_skill/',views.search_skill, name='search_skill'),
 ]

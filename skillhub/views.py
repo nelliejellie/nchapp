@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from django.http import HttpResponse
 from .models import *
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -63,6 +64,7 @@ def skill_detail(request, skill_id):
     context = {'artisan': artisan}
     return render(request, 'skillhub/skill_detail.html', context)
 
+@login_required(login_url='/accounts/login')
 def artisan_form(request):
     if request.method == 'POST':
         descriptions = request.POST['description']
@@ -77,3 +79,6 @@ def artisan_form(request):
         artisan.save()
         return redirect('skillhub')
     return render(request, 'skillhub/skill_form.html')
+
+def search_skill(request):
+    return render(request, 'skillhub/search_skill.html')

@@ -11,11 +11,12 @@ from accounts.models import MyUser
 # Create your models here.
 class Product(models.Model):
     status_choices = (
-       ('not selected','not selected'),
+       ('Other stuffs','Other stuffs'),
        ('Electronics', 'Electronics'),
        ('Furniture', 'Furniture'),
        ('Apartment','Apartment'),
-       ('Other stuffs','Other stuffs'),
+       ('Gadgets','Gadgets'),
+       
    )
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE, blank=True)
     name = models.CharField(max_length=20)

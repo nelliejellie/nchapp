@@ -31,7 +31,7 @@
 		  });
 		});
 	</script>
-    <title>Document</title>
+    <title>login</title>
 </head>
 <body>
     <header>
@@ -63,12 +63,12 @@
                                 <a href="{% url 'markethub' %}">Market Hub</a>
                             </li>
                             <li>
-                                <a href="#">Skill Hub</a>
+                                <a href="{% url 'skillhub' %}">Skill Hub</a>
                             </li>
                         </ul>
                     </li>
-                    <li><a href="single.html">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
                 </ul>
             </nav>
     </header>
@@ -87,6 +87,11 @@
                 <div class="form_child"><input type="submit" value="Get In" class="other_input submitter" style="background-color: #1AB188;"></div>
             </div>
         </form>
+        
+        <div class="other_auth">
+            <div class="auth"><a href="{% url 'register' %}"> Register</a></div>
+            <div class="auth"><a href="{% url 'password-reset' %}">forgot password?</a></div>
+        </div>
     </div>
 </body>
 </html>

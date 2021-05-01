@@ -4,7 +4,7 @@ from .models import *
 from django.contrib import messages
 from .models import MyUser
 from django.core.mail import send_mail
-from django.contrib.auth import authenticate, login as dj_login
+from django.contrib.auth import authenticate, login as dj_login, logout as dj_logout
 from django.conf import settings
 
 
@@ -71,3 +71,10 @@ def login(request):
             return redirect('login')
 
     return render(request, "accounts/login.html")
+
+def logout(request):
+    if request.method == 'POST':
+        dj_logout(request)
+        messages.success(request,'you have successfully logged out')
+        return redirect('index')
+

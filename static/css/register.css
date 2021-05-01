@@ -42,6 +42,15 @@ h1{
     background-color: #1AB188;
     height: 40px;
 }
+.other_auth{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+}
+.auth a{
+    color: white;
+}
 
 @media (min-width: 300px) and (max-width: 800px){
     .container{

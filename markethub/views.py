@@ -4,12 +4,19 @@ from markethub.models import *
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
-
+@login_required(login_url='/accounts/login')
 def markethub(request):
-    products = Product.objects.filter(user__state__contains=request.user.state)
+    products = Product.objects.filter(user__state__contains=request.user.state) #filter the products by the state of the user
     if len(products) < 1:
         messages.success(request, 'no products uploaded in your state yet')
+    if request.method == 'POST':
+        query = request.POST['options']
+        print(query)
+        products = Product.objects.filter(categories__iexact=query)
+        context = {'products':products}
+        return render(request, 'markethub/search_product.html', context)
     context = {
         'products':products,
     }
@@ -41,3 +48,6 @@ def product_detail(request, product_id):
     details = get_object_or_404(Product, pk=product_id)
     context = {'details': details}
     return render(request, 'markethub/product_detail.html', context)
+
+def search_product(request):
+    return render(request, 'markethub/search_product.html')

@@ -32,7 +32,7 @@
 		  });
 		});
 	</script>
-    <title>Market Hub</title>
+    <title>search</title>
 </head>
 <body>
     <div>
@@ -46,8 +46,9 @@
                         <a href="{% url 'markethub' %}">Market Hub</a>
                     </li>
                     <li>
-                        <a href="{% url 'skillhub' %">Skill Hub</a>
-                    </li>
+                        <a href="{% url 'skillhub' %}">Skill Hub</a>
+                    </li>	
+                    </li> -->
                 </ul>
             </li>
             <li><a href="single.html">About</a></li>
@@ -68,33 +69,37 @@
     <!-- search and filter button -->
     <div class="form_container">
         <div class="form">
-            <form action="">
-                <select name="" id="" class="select_input">
-                    <option value="">lagos</option>
-                    <option value="">oyo</option>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <select name="options" id="" class="select_input" onChange="form.submit()">
+                    <option value="Other Stuffs">Other Stuffs</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Gadgets">Gadgets</option>
+                    <option value="Furnitures">Furnitures</option>
+                    <option value="Apartments">Apartments</option>                    
                 </select>
             </form>
         </div>
-        <div class="form">
-            <form class="example" action="" >
-                <input type="text" placeholder="Search.." name="search" class="text_input">
-                <button type="submit" style="background-color: #0B7DDA;"><i class="fa fa-search"></i></button>
-              </form>
-        </div>
+        
     </div>
 
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color: green;text-align: center;">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
     <!-- the market hub -->
     <div class="product_container">
-        {% if artisan %}
-            {% for people in artisan %}
+        {% if products %}
+            {% for product in products %}
                 <div class="product" >
                     <figure>
-                        <img src="{{people.image.url}}" alt="" style="height: 400px;">
-                        <figcaption> <a href="{{ people.get_absolute_url }}"> {{people.user.username}}</a></figcaption>
+                        <img src="{{product.image.url}}" alt="" style="height: 400px;">
+                        <figcaption> <a href="{% url 'detail' product.id  %}"> {{product.name}}</a></figcaption>
                     </figure>
                 </div>
             {% empty %}
-                <h3>There are no {{people.categories}}s yet</h3>
+                <h3>There are no uploads yet</h3>
             {% endfor %}
         {% endif %}
     </div>
