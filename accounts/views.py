@@ -6,11 +6,14 @@ from .models import MyUser
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login as dj_login, logout as dj_logout
 from django.conf import settings
+from datetime import datetime
+from .tasks import *
 
 
 # Create your views here.
 
 def register(request):
+    delete_user()
     if request.method == 'POST':
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
@@ -37,6 +40,7 @@ def register(request):
                     user = MyUser.objects.create_user(first_name=first_name, last_name=last_name, username=username, 
                                                     password=password, reg_no=reg_no, state=state, local_govt=local_govt, email=email)
                     user.is_active = False
+                    user.expiry_date = datetime.now().date() + dt.timedelta(days=455)
                     user.save()
                     messages.success(request, ' welcome Corper!!!Your account will be active once your registeration number is confirmed')
                     subject = 'welcome to naijacorphub'

@@ -10,6 +10,19 @@ from accounts.models import MyUser
 
 
 # Create your models here.
+class Vacancy(models.Model):
+    user = models.ForeignKey(MyUser, on_delete=models.CASCADE, null=True)
+    job_name = models.CharField(max_length=50, blank=False)
+    job_description = models.TextField(blank=False)
+    job_address = models.CharField(max_length=50, blank=False)
+    numbers_to_call = models.CharField(max_length=50, blank=False)
+    state = models.CharField(max_length=50, blank=False)
+    publish = models.DateTimeField(default=datetime.now, blank=False)
+
+    def __str__(self):
+        return self.job_name
+
+
 class Corper_blog(models.Model):
     status_choices = (
         ('draft', 'Draft'),

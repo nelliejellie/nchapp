@@ -16,6 +16,8 @@ class Product(models.Model):
        ('Furniture', 'Furniture'),
        ('Apartment','Apartment'),
        ('Gadgets','Gadgets'),
+       ('Female Boutique','Female Boutique'),
+       ('Male Boutique','Male Boutique'),
        
    )
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE, blank=True)

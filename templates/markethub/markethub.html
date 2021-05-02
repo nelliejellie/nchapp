@@ -96,6 +96,7 @@
                     <figure>
                         <img src="{{product.image.url}}" alt="" style="height: 400px;">
                         <figcaption> <a href="{% url 'detail' product.id  %}"> {{product.name}}</a></figcaption>
+                        <figcaption> <a href="{% url 'detail' product.id  %}">Location: {{product.user.local_govt}}</a></figcaption>
                     </figure>
                 </div>
             {% empty %}

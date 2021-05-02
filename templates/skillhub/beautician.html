@@ -67,14 +67,7 @@
     </div>
     <!-- search and filter button -->
     <div class="form_container">
-        <div class="form">
-            <form action="">
-                <select name="" id="" class="select_input">
-                    <option value="">lagos</option>
-                    <option value="">oyo</option>
-                </select>
-            </form>
-        </div>
+        
         <div class="form">
             <form class="example" action="" >
                 <input type="text" placeholder="Search.." name="search" class="text_input">
@@ -90,7 +83,8 @@
                 <div class="product" >
                     <figure>
                         <img src="{{people.image.url}}" alt="" style="height: 400px;">
-                        <figcaption> <a href="{{ people.get_absolute_url }}"> {{people.user.username}}</a></figcaption>
+                        <figcaption> <a href="{{ people.get_absolute_url }}"> {{people.user.first_name}} {{people.user.last_name}}</a></figcaption>
+                        <figcaption> <a href="{{ people.get_absolute_url }}"> {{people.user.local_govt}}</a></figcaption>
                     </figure>
                 </div>
             {% empty %}

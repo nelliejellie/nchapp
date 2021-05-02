@@ -5,6 +5,11 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .serializers import UserSerializer, ProductSerializer, ArtisanSerializer
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.authentication import TokenAuthentication
+from rest_framework import viewsets
+from skillhub.models import Artisan
 
 @login_required(login_url='/accounts/login')
 def markethub(request):
@@ -51,3 +56,22 @@ def product_detail(request, product_id):
 
 def search_product(request):
     return render(request, 'markethub/search_product.html')
+
+
+class UserViewset(viewsets.ModelViewSet):
+    queryset = MyUser.objects.all()
+    serializer_class = UserSerializer
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (AllowAny,)
+
+class ProductViewset(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (AllowAny,)
+
+class ArtisanViewset(viewsets.ModelViewSet):
+    queryset = Artisan.objects.all()
+    serializer_class = ArtisanSerializer
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (AllowAny,)

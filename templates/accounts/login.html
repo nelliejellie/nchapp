@@ -82,14 +82,14 @@
         <form action="" method="post">
             <div class="form_div">
                 {% csrf_token %}
-                <div class="form_child"><input type="text" name="username" id="" class="other_input" placeholder="Username"></div>
-                <div class="form_child"><input type="password" name="password" id="" class="other_input" placeholder="Password"></div>
+                <div class="form_child"><input type="text" name="username" id="" class="other_input" placeholder="Username" required></div>
+                <div class="form_child"><input type="password" name="password" id="" class="other_input" placeholder="Password" required></div>
                 <div class="form_child"><input type="submit" value="Get In" class="other_input submitter" style="background-color: #1AB188;"></div>
             </div>
         </form>
         
         <div class="other_auth">
-            <div class="auth"><a href="{% url 'register' %}"> Register</a></div>
+            <div class="auth"><a href="{% url 'register' %}" style="font-size: 20px;"> Register</a></div>
             <div class="auth"><a href="{% url 'password-reset' %}">forgot password?</a></div>
         </div>
     </div>
