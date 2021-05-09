@@ -153,7 +153,8 @@ environ.Env.read_env()
 cloudinary.config( 
   cloud_name='dhfao0jm7',
   api_key="848314188379545",
-  api_secret='L9STxKQsLvitNYrdxBAhltnPLLk' 
+  api_secret='L9STxKQsLvitNYrdxBAhltnPLLk', 
+  CLOUDINARY_URL='cloudinary://848314188379545:L9STxKQsLvitNYrdxBAhltnPLLk@dhfao0jm7'
 )
 
 # celery
